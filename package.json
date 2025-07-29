@@ -1,0 +1,26 @@
+{
+    "name": "@arizona/config-schemas",
+    "version": "1.0.2",
+    "description": "Schemas Zod compartilhados entre Arco e Mosaico",
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "files": [
+        "dist"
+    ],
+    "scripts": {
+        "build": "tsc",
+        "prepare": "npm run build",
+        "prepublishOnly": "npm run build"
+    },
+    "repository": {
+        "type": "git",
+        "url": ""
+    },
+    "author": "Thiago Bora",
+    "license": "MIT",
+    "dependencies": {
+        "zod": "^3.24.4",
+        "typescript": "^5.8.3",
+        "@types/node": "^18.0.0"
+    }
+}
