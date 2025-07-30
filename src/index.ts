@@ -1,9 +1,9 @@
 import { z } from 'zod'
 
 export const SectionAttributesSchema = z.object({
-    id: z.string().min(1, "ID de módulo não pode ser vazio."),
-    classes: z.array(z.string()).min(1, "O conjunto de classes de módulo não pode ser vazio."),
-    module: z.string().min(1, "O módulo não pode ser vazio."),
+    id: z.string().nonempty().regex(/^[a-zA-Z0-9_-]+$/, { message: 'ID de seção inválido. Use apenas letras, números, "-" ou "_".' }),
+    classes: z.array(z.string().nonempty().regex(/^[a-zA-Z0-9_-]+$/, { message: 'Nome de classe inválido. Use apenas letras, números, "-" ou "_".' })).min(1, "O conjunto de classes de módulo não pode ser vazio."),
+    module: z.string().nonempty().regex(/^[a-zA-Z0-9._-]+$/, { message: 'Padrão inválido. Use apenas letras, números, ".", "-" ou "_".' }).min(1, "O módulo não pode ser vazio."),
     media: z.enum([
         "image", 
         "video"
