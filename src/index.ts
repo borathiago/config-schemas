@@ -25,13 +25,16 @@ export const SectionAttributesSchema = z.object({
 }).strict()
 
 export const ConfigurationPayloadSchema = z.object({
-    os: z.string().min(1, "OS é obrigatório"),
-    name: z.string().min(1, "Nome do projeto é obrigatório"),
+    os: z.string().min(1, "OS é obrigatório. Não pode estar vazio."),
+    name: z.string().min(1, "Nome do projeto é obrigatório. Não pode estar vazio."),
     layout: z.enum([
         "electrolux",
         "mademsa"
     ]),
-    modules: z.number().int().positive(),
+    modules: z.number({
+        required_error: "Número de módulos é obrigatório.",
+        invalid_type_error: "Número de módulos deve ser um número válido."
+    }).int("Número de módulos deve ser um número inteiro.").positive("Número de módulos deve ser maior do que 0."),
     environment: z.enum([
         "development",
         "production"
