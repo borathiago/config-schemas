@@ -39,6 +39,23 @@ export const ConfigurationPayloadSchema = z.object({
         "development",
         "production"
     ]),
+    figma: z.string().url().min(1, "O link do Figma não pode estar vazio e deve ser uma URL válida."),
+    structure: z.enum([
+        "plus",
+        "light"
+    ]),
+    categories: z.enum([
+        "first",
+        "second"
+    ]),
+    languages: z.enum([
+        "first",
+        "second"
+    ]),
+    countries: z.enum([
+        "first",
+        "second"
+    ]),
     sections: z.array(SectionAttributesSchema)
 }).strict().superRefine((payload, context) => {
     if (payload.sections.length !== payload.modules) {
