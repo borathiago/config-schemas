@@ -49,12 +49,15 @@ export const ConfigurationPayloadSchema = z.object({
         "second"
     ]),
     languages: z.enum([
-        "first",
-        "second"
+        "portuguese",
+        "english",
+        "spanish"
     ]),
     countries: z.enum([
-        "first",
-        "second"
+        "brasil",
+        "argentina",
+        "colômbia",
+        "peru"
     ]),
     sections: z.array(SectionAttributesSchema)
 }).strict().superRefine((payload, context) => {
