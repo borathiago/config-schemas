@@ -84,5 +84,10 @@ export interface ConfigurationPayload {
     layout: "electrolux" | "mademsa";
     modules: number;
     environment: "development" | "production";
+    figma: string;
+    structure: "plus" | "light";
+    categories: "first" | "second";
+    languages: "first" | "second";
+    countries: "first" | "second";
     sections: SectionAttributes[];
 }
