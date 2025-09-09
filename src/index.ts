@@ -25,8 +25,8 @@ export const SectionAttributesSchema = z.object({
 }).strict()
 
 export const ConfigurationPayloadSchema = z.object({
-    os: z.string().min(1, "OS é obrigatório. Não pode estar vazio."),
-    name: z.string().min(1, "Nome do projeto é obrigatório. Não pode estar vazio."),
+    os: z.string().min(1, "OS é obrigatório."),
+    name: z.string().min(1, "Nome do projeto é obrigatório."),
     layout: z.enum([
         "electrolux",
         "mademsa"
@@ -51,15 +51,14 @@ export const ConfigurationPayloadSchema = z.object({
         "preparation"
     ]),
     language: z.enum([
-        "portuguese",
-        "english",
-        "spanish"
-    ]),
-    country: z.enum([
-        "brasil",
-        "argentina",
-        "colômbia",
-        "peru"
+        "br",
+        "are",
+        "ch",
+        "nola",
+        /* "pub",
+        "cac ",
+        "pr",
+        "andinos" */
     ]),
     sections: z.array(SectionAttributesSchema)
 }).strict().superRefine((payload, context) => {
@@ -98,14 +97,12 @@ export const EnvironmentSchema = (ConfigurationPayloadSchema.innerType()).shape.
 export const StructureSchema = (ConfigurationPayloadSchema.innerType()).shape.structure
 export const CategorySchema = (ConfigurationPayloadSchema.innerType()).shape.category
 export const LanguageSchema = (ConfigurationPayloadSchema.innerType()).shape.language
-export const CountrySchema = (ConfigurationPayloadSchema.innerType()).shape.country
 
 export type Layout = z.infer<typeof LayoutSchema>
 export type Environment = z.infer<typeof EnvironmentSchema>
 export type Structure = z.infer<typeof StructureSchema>
 export type Category = z.infer<typeof CategorySchema>
 export type Language = z.infer<typeof LanguageSchema>
-export type Country = z.infer<typeof CountrySchema>
 
 export interface ConfigurationPayload {
     os: string;
@@ -117,6 +114,5 @@ export interface ConfigurationPayload {
     structure: Structure;
     category: Category;
     language: Language;
-    country: Country;
     sections: SectionAttributes[];
 }
