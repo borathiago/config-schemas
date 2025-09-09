@@ -70,10 +70,10 @@ export const ConfigurationPayloadSchema = z.object({
     }
 })
 
-const MediaSchema = SectionAttributesSchema.shape.media
-const ModalSchema = SectionAttributesSchema.shape.modal
-const CarouselSchema = SectionAttributesSchema.shape.carousel
-const IframeSchema = SectionAttributesSchema.shape.iframe
+export const MediaSchema = SectionAttributesSchema.shape.media
+export const ModalSchema = SectionAttributesSchema.shape.modal
+export const CarouselSchema = SectionAttributesSchema.shape.carousel
+export const IframeSchema = SectionAttributesSchema.shape.iframe
 
 export type Media = z.infer<typeof MediaSchema>
 export type Modal = z.infer<typeof ModalSchema>
