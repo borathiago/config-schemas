@@ -45,10 +45,10 @@ export const ConfigurationPayloadSchema = z.object({
         "light"
     ]),
     category: z.enum([
-        "Care",
-        "Wellbeing & SDA",
-        "Tast (Preservation)",
-        "Tast (Preparation)"
+        "care",
+        "wellbeing",
+        "preservation",
+        "preparation"
     ]),
     language: z.enum([
         "portuguese",
