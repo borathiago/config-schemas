@@ -44,16 +44,16 @@ export const ConfigurationPayloadSchema = z.object({
         "plus",
         "light"
     ]),
-    categories: z.enum([
+    category: z.enum([
         "first",
         "second"
     ]),
-    languages: z.enum([
+    language: z.enum([
         "portuguese",
         "english",
         "spanish"
     ]),
-    countries: z.enum([
+    country: z.enum([
         "brasil",
         "argentina",
         "colômbia",
@@ -70,27 +70,51 @@ export const ConfigurationPayloadSchema = z.object({
     }
 })
 
+const MediaSchema = SectionAttributesSchema.shape.media
+const ModalSchema = SectionAttributesSchema.shape.modal
+const CarouselSchema = SectionAttributesSchema.shape.carousel
+const IframeSchema = SectionAttributesSchema.shape.iframe
+
+export type Media = z.infer<typeof MediaSchema>
+export type Modal = z.infer<typeof ModalSchema>
+export type Carousel = z.infer<typeof CarouselSchema>
+export type Iframe = z.infer<typeof IframeSchema>
+
 export interface SectionAttributes {
     id: string;
     classes: string[];
     module: string;
     contentHTML: string;
-    media?: "image" | "video";
-    modal?: "default";
-    carousel?: "bullets" | "complete" | "navigation-slides" | "navigation" | "numbered" | "default";
-    iframe?: "full-width" | "framed-width";
+    media?: Media;
+    modal?: Modal;
+    carousel?: Carousel;
+    iframe?: Iframe;
 }
+
+export const LayoutSchema = (ConfigurationPayloadSchema.innerType()).shape.layout
+export const EnvironmentSchema = (ConfigurationPayloadSchema.innerType()).shape.environment
+export const StructureSchema = (ConfigurationPayloadSchema.innerType()).shape.structure
+export const CategorySchema = (ConfigurationPayloadSchema.innerType()).shape.category
+export const LanguageSchema = (ConfigurationPayloadSchema.innerType()).shape.language
+export const CountrySchema = (ConfigurationPayloadSchema.innerType()).shape.country
+
+export type Layout = z.infer<typeof LayoutSchema>
+export type Environment = z.infer<typeof EnvironmentSchema>
+export type Structure = z.infer<typeof StructureSchema>
+export type Category = z.infer<typeof CategorySchema>
+export type Language = z.infer<typeof LanguageSchema>
+export type Country = z.infer<typeof CountrySchema>
 
 export interface ConfigurationPayload {
     os: string;
     name: string;
-    layout: "electrolux" | "mademsa";
+    layout: Layout;
     modules: number;
-    environment: "development" | "production";
+    environment: Environment;
     figma: string;
-    structure: "plus" | "light";
-    categories: "first" | "second";
-    languages: "first" | "second";
-    countries: "first" | "second";
+    structure: Structure;
+    category: Category;
+    language: Language;
+    country: Country;
     sections: SectionAttributes[];
 }
